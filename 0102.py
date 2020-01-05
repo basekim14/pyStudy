@@ -5,3 +5,5 @@ if a == 1:
     print('python')
     print('wordl!!')
     print()
+else:
+    print('none')
