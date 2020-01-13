@@ -2,8 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0e68032a-7e89-4525-b030-58fe69daafa1" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/pyStudy.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/pyStudy.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -22,7 +21,7 @@
   </component>
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
-    <property name="settings.editor.selected.configurable" value="reference.settingsdialog.IDE.editor.colors.Python" />
+    <property name="settings.editor.selected.configurable" value="configurable.group.appearance" />
   </component>
   <component name="RunManager">
     <configuration name="py11_09" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
@@ -82,10 +81,10 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="523" y="174" key="#Notifications/0.0.1920.1040@0.0.1920.1040" timestamp="1578595559868" />
-    <state x="349" y="288" key="FileChooserDialogImpl" timestamp="1578596663474">
+    <state x="349" y="288" key="FileChooserDialogImpl" timestamp="1578649817302">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="349" y="288" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1578596663474" />
+    <state x="349" y="288" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1578649817302" />
     <state width="936" height="347" key="GridCell.Tab.0.bottom" timestamp="1578598157323">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -118,10 +117,10 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="936" height="347" key="GridCell.Tab.1.right/0.0.1920.1040@0.0.1920.1040" timestamp="1578598157323" />
-    <state x="111" y="287" width="998" height="727" key="SettingsEditor" timestamp="1578598048403">
+    <state x="579" y="103" width="998" height="763" key="SettingsEditor" timestamp="1578649895553">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="111" y="287" width="998" height="727" key="SettingsEditor/0.0.1920.1040@0.0.1920.1040" timestamp="1578598048403" />
+    <state x="579" y="103" width="998" height="763" key="SettingsEditor/0.0.1920.1040@0.0.1920.1040" timestamp="1578649895553" />
     <state x="735" y="433" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1578595564551">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -130,5 +129,9 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="93" y="100" width="774" height="847" key="dock-window-1/0.0.1920.1040@0.0.1920.1040" timestamp="1578595855242" />
+    <state x="331" y="324" width="709" height="306" key="org.intellij.images.editor.actions.BackgroundImageDialog" timestamp="1578649823644">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="331" y="324" width="709" height="306" key="org.intellij.images.editor.actions.BackgroundImageDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1578649823644" />
   </component>
 </project>
