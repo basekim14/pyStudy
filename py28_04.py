@@ -1,5 +1,5 @@
 # 20-02-19
-# EX 27.6
+# EX 28.4
 
 with open('py28_04_txt.txt', 'r') as file:
     s = file.read()
