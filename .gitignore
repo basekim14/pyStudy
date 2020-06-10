@@ -5,6 +5,7 @@ bin-debug/
 bin-release/
 [Oo]bj/
 [Bb]in/
+test/
 
 # Other files and folders
 .settings/
