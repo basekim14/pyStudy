@@ -41,7 +41,7 @@ class MaxHeap:
             self. max_heapify(0, n)
         return sorted_list
 
-    def insert(self, key):      # 매개변수 자유, heaq queue push에선 매개변수 두개(리스트, key)
+    def insert(self, key):
         self.queue.append(key)
         self.build_heap()
 
@@ -55,11 +55,3 @@ class MaxHeap:
 
     def swap(self, i, parent_index):
         self.queue[i], self.queue[parent_index] = self.queue[parent_index], self.queue[i]
-
-
-num_list = [7, 9, 4, 8, 6, 3]
-
-H = MaxHeap(num_list)
-print(H)
-
-print(H.heap_sort())
