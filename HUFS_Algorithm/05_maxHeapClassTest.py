@@ -10,7 +10,8 @@ def print_testcase(num_list):
     print("\tBuild\t: %s" % max_heap)
 
     sorted_list = max_heap.heap_sort()
-    print("\tSorted\t: %s" % sorted_list)
+    print("\tSorted\t: (ascending)  %s" % max_heap)
+    print("\t\t\t  (descending) %s\n" % sorted_list)
 
     while True:
         # insert할 node를 적절한 범위를 설정한 뒤 중복이 안되게 임의 선정
@@ -22,7 +23,8 @@ def print_testcase(num_list):
     print("\tInsert\t: %s (Inserted node : %s)" %(max_heap, rand_node))
 
     ai_sorted_list = max_heap.heap_sort()  # after insert
-    print("\tSorted\t: %s\n" % ai_sorted_list)
+    print("\tSorted\t: (ascending)  %s" % max_heap)
+    print("\t\t\t  (descending) %s\n\n" % ai_sorted_list)
 
 
 if __name__ == "__main__":
@@ -45,7 +47,5 @@ if __name__ == "__main__":
     # 0~50 범위를 가진 길이 10의 랜덤 리스트를 생성
     num_list = sample([i for i in range(0, 51)], 51)[:10]
     print_testcase(num_list)
-
-
 
     print("=======================================================================")

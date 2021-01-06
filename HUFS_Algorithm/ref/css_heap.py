@@ -53,11 +53,11 @@ class Heap:
         return key
 
 
-S = [int(x) for x in input().split()]
-# S = [3, 8, 4, 5, 1, 15, 7, 16, 9, 2]
+# S = [int(x) for x in input().split()]
+S = [3, 8, 4, 5, 1, 15, 7, 16, 9, 2]
 H = Heap(S)
 H.make_heap()
-
+print(H)
 H.heap_sort()
 
 print(H)
