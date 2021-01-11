@@ -3,7 +3,6 @@
 
 from math import inf
 
-# 노드의 알파벳은 과제 #10-1번의 그래프에 적힌 알파벳과 동일함
 graph2 = {
     "vertices": ["A", "B", "C", "D", "E", "F", "G", "H"],
     "edges": [
@@ -24,6 +23,7 @@ graph2 = {
     ]
 }
 
+# 노드의 알파벳은 과제 #10-1번의 그래프에 적힌 알파벳과 동일함
 graph = {
     "vertices": ["A", "B", "C", "D", "E", "F", "G", "H"],
     "edges": [
@@ -55,7 +55,13 @@ def dijkstra(G, r):
         d[u] = inf
     d[r] = 0
 
+    """ test data """
+    loop_count = 0
+
     while S != V:
+        loop_count += 1
+        print("\n=== %d ===" % loop_count)
+
         u = extract_min(V-S, d)
         S |= {u}
 
@@ -70,6 +76,8 @@ def dijkstra(G, r):
             if (v in V-S) and (d[u] + w < d[v]):
                 d[v] = d[u] + w
 
+        print(sorted(d.items()))
+
     return d
 
 def extract_min(Q, d):
@@ -80,10 +88,6 @@ def extract_min(Q, d):
             min_d = value
             u = key
     return u
-
-
-
-
 
 if __name__ == "__main__":
     print(dijkstra(graph, "B"))

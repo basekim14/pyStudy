@@ -105,7 +105,7 @@ def prim(G, r):
 
 
         S |= {u}
-        # print("S :", S)
+        print("S :", S)
 
         # u로부터 연결된 정점들의 집합
         L = {l[2] for l in filter(lambda x: x[1] == u, E)}
@@ -117,8 +117,7 @@ def prim(G, r):
         #         if edge[2] not in S:
         #             L.add(edge[2])
         # print("u :", u)
-        # print("L :", L)
-
+        print("L :", L)
 
         for v in L:
             # print("v :", v)
