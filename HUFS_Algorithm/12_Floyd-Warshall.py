@@ -2,6 +2,7 @@
 # 아랍어과 201400270 김건호
 
 from math import inf
+from copy import deepcopy
 
 # 초기 상태의 그래프 A⁰
 A = {
@@ -35,36 +36,47 @@ def floyd_warshall(G):
     # 초기 인접 행렬 A0를 이차원 리스트로 선언 후 result에 삽입
     result = dict()
 
-    A0 = [[0 for _ in range(n)] for _ in range(n)]
+    A = [[0 for _ in range(n)] for _ in range(n)]
     for i in range(1, n+1):
         for j in range(1, n+1):
             for edge in E:
                 if i == edge[1] and j == edge[2]:
                     w = edge[0]
-                    A0[i-1][j-1] = w
+                    A[i-1][j-1] = w
                     break
     else:
-        result["A0"] = A0
+        result["A0"] = deepcopy(A)
 
     for k in range(1, n+1):
         # 알고리즘 수행 단계별로 인접행렬 tmp_A를 선언
-        # tmp_A == Aᵏ
-        tmp_A = [[0 for _ in range(n)] for _ in range(n)]
+        # tmp_A == Aᵏ, prev_A == Aᵏ⁻¹
+        # tmp_A = [[0 for _ in range(n)] for _ in range(n)]
+        # prev_A = result["A"+str(k-1)]
         for i in range(1, n+1):
             for j in range(1, n+1):
-                # prev_A == Aᵏ⁻¹
-                prev_A = result["A" + str(k-1)]
+                # k행이나 k열에 해당하는 경우와 i와 j가 같은 경우 pass
+                if i == k or j == k or i == j:
+                    continue
+
+                if k == 1 and i == 2 and j == 3:
+                    print(A[i-1][j-1])
+                    print(A[i-1][k-1])
+                    print(A[k-1][j-1])
+
+                A[i-1][j-1] = min(A[i-1][j-1], A[i-1][k-1] + A[k-1][j-1])
+                # tmp_A[i-1][j-1] = min(prev_A[i-1][j-1], prev_A[i-1][k-1] + prev_A[k-1][j-1])
+
+                # d == dᵏᵢⱼ
+
                 # w1 == dᵏ⁻¹ᵢⱼ
-                w1 = prev_A[i-1][j-1]
+                # w1 = prev_A[i-1][j-1]
 
                 # w2 == dᵏ⁻¹ᵢₖ + dᵏ⁻¹ₖⱼ
-                w2 = prev_A[i-1][k-1] + prev_A[k-1][j-1]
+                # w2 = prev_A[i-1][k-1] + prev_A[k-1][j-1]
 
                 # tmp_A[i-1][j-1] == dᵏᵢⱼ
-                tmp_A[i-1][j-1] = min(w1, w2)
-
-        result["A"+str(k)] = tmp_A
-
+                # tmp_A[i-1][j-1] = min(w1, w2)
+        result["A"+str(k)] = deepcopy(A)
     return result
 
 
