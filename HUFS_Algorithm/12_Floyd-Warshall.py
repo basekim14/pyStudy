@@ -3,35 +3,109 @@
 
 from math import inf
 
+# 초기 상태의 그래프 A⁰
+A = {
+    "vertices": [1, 2, 3, 4],
+    "edges": [
+        # (i번째 정점에서 j번째 정점으로의 거리, i번째 정점, j번째 정점)
+        # 자기 자신으로의 거리는 0, 정점 간 이어져있지 않은 경우의 거리는 inf
+        (3, 1, 2),
+        (inf, 1, 3),
+        (5, 1, 4),
+        (2, 2, 1),
+        (inf, 2, 3),
+        (4, 2, 4),
+        (inf, 3, 1),
+        (1, 3, 2),
+        (inf, 3, 4),
+        (inf, 4, 1),
+        (inf, 4, 2),
+        (2, 4, 3),
+    ]
+}
+
 # 단계별 matrix 출력 -> d0, d1 ... 을 리스트 / 딕셔너리에 담아 result에 출력 후 main에서 값 나타냄
 
 def floyd_warshall(G):
-    n = len(G)
+    V = G["vertices"]
+    E = G["edges"]
+    n = len(V)
 
     # 알고리즘의 수행 과정을 담을 딕셔너리 result를 선언 후
+    # 초기 인접 행렬 A0를 이차원 리스트로 선언 후 result에 삽입
     result = dict()
 
+    A0 = [[0 for _ in range(n)] for _ in range(n)]
+    for i in range(1, n+1):
+        for j in range(1, n+1):
+            for edge in E:
+                if i == edge[1] and j == edge[2]:
+                    w = edge[0]
+                    A0[i-1][j-1] = w
+                    break
+    else:
+        result["A0"] = A0
 
-    for i in range(n):
-        for j in range(n):
-            pass
-    return True
+    for k in range(1, n+1):
+        # 알고리즘 수행 단계별로 인접행렬 tmp_A를 선언
+        # tmp_A == Aᵏ
+        tmp_A = [[0 for _ in range(n)] for _ in range(n)]
+        for i in range(1, n+1):
+            for j in range(1, n+1):
+                # prev_A == Aᵏ⁻¹
+                prev_A = result["A" + str(k-1)]
+                # w1 == dᵏ⁻¹ᵢⱼ
+                w1 = prev_A[i-1][j-1]
+
+                # w2 == dᵏ⁻¹ᵢₖ + dᵏ⁻¹ₖⱼ
+                w2 = prev_A[i-1][k-1] + prev_A[k-1][j-1]
+
+                # tmp_A[i-1][j-1] == dᵏᵢⱼ
+                tmp_A[i-1][j-1] = min(w1, w2)
+
+        result["A"+str(k)] = tmp_A
+
+    return result
 
 
 if __name__ == "__main__":
-    # 2차원 리스트로 구현된 초기 상태 그래프의 인접 행렬 A0
-    # 이 때, A[i][j]는 인접 행렬의 i+1행, j+1열을 가리키고,
-    # 이에 해당하는 값은 i+1번째 정점에서 j+1번째 정점으로의 거리이다.
-    A = [[0, 3, inf, 5],
-         [2, 0, inf, 4],
-         [inf, 1, 0, inf],
-         [inf, inf, 2, 0]]
+    result = floyd_warshall(A)
 
-    # 대상 행렬인 A가 정방행렬인지 확인
-    # ( A가 비어있지 않다면 A의 행 개수가 각각의 행 별 요소의 개수와 같은지를 판별 )
-    if A and all(map(lambda x: x == len(A), [len(row) for row in A])):
-        # target이 정방 행렬일 때 floyd_warshall 함수 호출
-        result = floyd_warshall(A)
-        print(result)
+    # 알고리즘의 수행단계(k)별 인접행렬 출력
+    for k in range(len(result.keys())):
+        key = "A" + str(k)
+        superscript = ""
+        for token in str(k):
+            if token == "0":
+                superscript += "⁰"
+            elif token == "1":
+                superscript += "¹"
+            elif token == "2":
+                superscript += "²"
+            elif token == "3":
+                superscript += "³"
+            elif token == "4":
+                superscript += "⁴"
+            elif token == "5":
+                superscript += "⁵"
+            elif token == "6":
+                superscript += "⁶"
+            elif token == "7":
+                superscript += "⁷"
+            elif token == "8":
+                superscript += "⁸"
+            elif token == "9":
+                superscript += "⁹"
 
-
+        print("%5s =\t" % ("A" + superscript), end="")
+        for row in result[key]:
+            print("[ ", end="")
+            for elem in map(str, row):
+                if len(elem) == 1:
+                    print(" %s  " % str(elem), end="")
+                elif len(elem) == 2:
+                    print(" %s " % str(elem), end="")
+                else:
+                    print("%s " % str(elem), end="")
+            print("]", end="\n\t\t")
+        print()
