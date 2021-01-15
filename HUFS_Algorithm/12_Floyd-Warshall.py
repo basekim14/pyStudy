@@ -4,7 +4,7 @@
 from math import inf
 from copy import deepcopy
 
-# 초기 상태의 그래프 A⁰
+# 초기 상태의 그래프
 A = {
     "vertices": [1, 2, 3, 4],
     "edges": [
@@ -22,6 +22,24 @@ A = {
         (inf, 4, 1),
         (inf, 4, 2),
         (2, 4, 3),
+    ]
+}
+
+A2 = {
+    "vertices": [1, 2, 3, 4],
+    "edges": [
+        (5, 1, 2),
+        (inf, 1, 3),
+        (8, 1, 4),
+        (7, 2, 1),
+        (9, 2, 3),
+        (inf, 2, 4),
+        (2, 3, 1),
+        (inf, 3, 2),
+        (4, 3, 4),
+        (inf, 4, 1),
+        (inf, 4, 2),
+        (3, 4, 3)
     ]
 }
 
@@ -54,16 +72,18 @@ def floyd_warshall(G):
         # prev_A = result["A"+str(k-1)]
         for i in range(1, n+1):
             for j in range(1, n+1):
-                # k행이나 k열에 해당하는 경우와 i와 j가 같은 경우 pass
+                # k행이나 k열에 해당하는 경우와 i와 j가 같은 경우를 제외함
                 if i == k or j == k or i == j:
                     continue
 
-                if k == 1 and i == 2 and j == 3:
-                    print(A[i-1][j-1])
-                    print(A[i-1][k-1])
-                    print(A[k-1][j-1])
+                # if k == 1 and i == 2 and j == 3:
+                #     print(A[i-1][j-1])
+                #     print(A[i-1][k-1])
+                #     print(A[k-1][j-1])
+                for l in range(1, j):
+                    A[i-1][j-1] = min(A[i-1][j-1], A[i-1][l-1] + A[l-1][j-1])
 
-                A[i-1][j-1] = min(A[i-1][j-1], A[i-1][k-1] + A[k-1][j-1])
+
                 # tmp_A[i-1][j-1] = min(prev_A[i-1][j-1], prev_A[i-1][k-1] + prev_A[k-1][j-1])
 
                 # d == dᵏᵢⱼ
@@ -76,6 +96,8 @@ def floyd_warshall(G):
 
                 # tmp_A[i-1][j-1] == dᵏᵢⱼ
                 # tmp_A[i-1][j-1] = min(w1, w2)
+
+        # 리스트 내부 요소를 다중 참조하는 문제를 방지(깊은 복사)
         result["A"+str(k)] = deepcopy(A)
     return result
 
@@ -119,5 +141,5 @@ if __name__ == "__main__":
                     print(" %s " % str(elem), end="")
                 else:
                     print("%s " % str(elem), end="")
-            print("]", end="\n\t\t")
+            print("]", end="\n\t")
         print()
